@@ -19,6 +19,7 @@ public class JfrmJuego extends javax.swing.JFrame {
      */
     public JfrmJuego() {
         initComponents();
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
