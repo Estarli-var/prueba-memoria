@@ -12,9 +12,6 @@ public class JfrmInicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmInicio.class.getName());
 
-    /**
-     * Creates new form JfrmInicio
-     */
     public JfrmInicio() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
@@ -33,10 +30,12 @@ public class JfrmInicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnJugar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(420, 480));
@@ -59,12 +58,27 @@ public class JfrmInicio extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Si coinciden, ganas la pareja");
+        jLabel3.setText("Cada pareja encontrada suma 100 puntos");
         jLabel3.setAlignmentX(0.5F);
         getContentPane().add(jLabel3);
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setText("Cada intento realizado resta 20 puntos");
+        jLabel6.setAlignmentX(0.5F);
+        getContentPane().add(jLabel6);
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("Si las cartas no coincidentes permanecerán visibles por 2 segundos.");
+        jLabel8.setAlignmentX(0.5F);
+        getContentPane().add(jLabel8);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("El juego cuenta con 3 niveles: Principiante, Intermedio y avanzado");
+        jLabel7.setAlignmentX(0.5F);
+        getContentPane().add(jLabel7);
+
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setText("Encontrá todas las parejas con el menor puntaje posible.");
+        jLabel4.setText("Encontrá todas las parejas con el menor número de intentos");
         jLabel4.setAlignmentX(0.5F);
         jLabel4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 15, 1));
         getContentPane().add(jLabel4);
@@ -79,19 +93,8 @@ public class JfrmInicio extends javax.swing.JFrame {
         jLabel5.setText("   ");
         getContentPane().add(jLabel5);
 
-        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSalir.setText("SALIR");
-        btnSalir.setAlignmentX(0.5F);
-        btnSalir.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        btnSalir.addActionListener(this::btnSalirActionPerformed);
-        getContentPane().add(btnSalir);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
         JfrmJuego ventana = new JfrmJuego();
@@ -126,12 +129,14 @@ public class JfrmInicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnJugar;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

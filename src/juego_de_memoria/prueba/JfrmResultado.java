@@ -4,10 +4,6 @@
  */
 package juego_de_memoria.prueba;
 
-/**
- *
- * @author Nazareth Quirós
- */
 public class JfrmResultado extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmResultado.class.getName());
@@ -17,6 +13,7 @@ public class JfrmResultado extends javax.swing.JFrame {
      */
     public JfrmResultado() {
         initComponents();
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
