@@ -84,6 +84,7 @@ public class JfrmInicio extends javax.swing.JFrame {
         getContentPane().add(jLabel4);
 
         btnJugar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnJugar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/play.png"))); // NOI18N
         btnJugar.setText("JUGAR");
         btnJugar.setAlignmentX(0.5F);
         btnJugar.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
