@@ -1140,7 +1140,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/iconos/playing-cards.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Parejas"/>
+            <Property name="text" type="java.lang.String" value="Parejas encontradas"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblTiempo">

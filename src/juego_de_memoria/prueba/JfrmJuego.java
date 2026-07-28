@@ -6,7 +6,11 @@ package juego_de_memoria.prueba;
 
 import Jugadores.Jugador;
 import conometros.Conometro;
+import controladores.ControladorJuego;
 import java.awt.CardLayout;
+import javax.swing.JButton;
+import persona1.Carta;
+import persona1.Tablero;
 
 /**
  *
@@ -15,9 +19,11 @@ import java.awt.CardLayout;
 public class JfrmJuego extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmJuego.class.getName());
-
     private Conometro cronometro = new Conometro();
     private Jugador jugador = new Jugador();
+    private Tablero tablero;
+    private ControladorJuego controladorJuego;
+    private JButton[][] botonesCartas;
     private javax.swing.Timer timerInterfaz;
     
     public JfrmJuego() {
@@ -699,7 +705,7 @@ public class JfrmJuego extends javax.swing.JFrame {
 
         lblParejas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblParejas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/playing-cards.png"))); // NOI18N
-        lblParejas.setText("Parejas");
+        lblParejas.setText("Parejas encontradas");
         panelEstadisticas.add(lblParejas);
 
         lblTiempo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -714,6 +720,7 @@ public class JfrmJuego extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1173,29 +1180,62 @@ public class JfrmJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_comboNivelActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        jugador.reiniciar();
-        cronometro.reiniciar();
-    
-        lblPuntaje.setText("Puntaje: " +jugador.getPuntaje());
-        lblIntentos.setText("Intentos: " + jugador.getIntentos());
-        lblParejas.setText("Parejas: " + jugador.getParejas());
-        lblTiempo.setText("Tiempo: 00:00");
-    
-        cronometro.iniciar();
-    
-        if (timerInterfaz != null) {
-            timerInterfaz.stop();
-        }
-        timerInterfaz = new javax.swing.Timer(1000, e -> {
-        lblTiempo.setText(String.format("Tiempo: %02d:%02d", 
-        cronometro.getMinutos(), cronometro.getSegundos()));
-    });
-        timerInterfaz.start();
-    
-        comboNivel.setEnabled(false);
-        btnIniciar.setEnabled(false);
+        
     }//GEN-LAST:event_btnIniciarActionPerformed
-
+    private void procesarClicBoton(java.awt.event.ActionEvent evt){
+        JButton botonSeleccionado = (JButton) evt.getSource();
+        for(int i = 0; i < botonesCarta.length; i++){
+            for(int j = 0; j < botonesCarta[i].length; i++){
+                if(botonesCarta[i][j] == botonSeleccionado){
+                    manejarClicCarta(i, j);
+                    return;
+                }
+            }
+        }
+    }
+    private JButton[][] obtenerBotonesPanel(java.awt.event.ActionEvent evt){
+        JButton[][] botones = new JButton[filas][columnas];
+        java.awt.Component[] componentes = panel.getComponents();
+        int indi = 0;
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                JButton boton = (JButton) componentes[indi];
+                botones[i][j] = boton;
+                boton.setText("?");
+                boton.setIcon(null);
+                indi++;
+            }
+        }
+        return botones;
+    }
+    private void manejarClicCarta(int fila, int columna){
+        controladorJuego.seleccionarCarta(fila, columna);
+        actualizarInterfaz();
+        if(tablero.validarTodaslasCartas()){
+            mostrarResultado();
+        }
+    }
+    
+    private void actualizarInterfaz(){
+        lblPuntaje.setText("Puntaje: " + jugador.getPuntaje());
+        lblIntentos.setText("Intentos: " + jugador.getIntentos());
+        lblParejas.setText("Parejas Encontadas: " + jugador.getParejas());
+        
+        Carta[][] cartas = tablero.getCartas();
+        for (int i = 0; i < cartas.length; i++) {
+            for (int j = 0; j < cartas[i].length; j++) {
+                Carta carta = cartas[i][j];
+                if(carta.isEstado()){
+                    botonesCartas[i][j].setIcon(
+                    getClass().getResource("/persona1/imagenes/" + carta.getImagen() + ".png")));
+                    botonesCartas[i][j].setText("?");
+                }else{
+                    botonesCarta[i][j].setIcon(null);
+                    botonesCarta[i][j].setText("?");
+                }
+            }    
+        }
+    }
     /**
      * @param args the command line arguments
      */
