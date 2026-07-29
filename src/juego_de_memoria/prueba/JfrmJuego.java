@@ -10,6 +10,7 @@ import controladores.ControladorJuego;
 import java.awt.CardLayout;
 import javax.swing.JButton;
 import persona1.Carta;
+import persona1.Dificultad;
 import persona1.Tablero;
 
 /**
@@ -20,15 +21,20 @@ public class JfrmJuego extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmJuego.class.getName());
     private Conometro cronometro = new Conometro();
-    private Jugador jugador = new Jugador();
+    private final Jugador jugador = new Jugador();
     private Tablero tablero;
     private ControladorJuego controladorJuego;
-    private JButton[][] botonesCartas;
     private javax.swing.Timer timerInterfaz;
+    private JButton[][] botonesCartas;
+    private Dificultad dificultadSeleccionada;
+    private javax.swing.JPanel panelActual;
+    private int filasActuales;
+    private int columnasActuales;
     
     public JfrmJuego() {
         initComponents();
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        comboNivelActionPerformed(null);
     }
 
     /**
@@ -188,6 +194,7 @@ public class JfrmJuego extends javax.swing.JFrame {
         btnReiniciar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/reload.png"))); // NOI18N
         btnReiniciar.setText("Reiniciar");
+        btnReiniciar.addActionListener(this::btnReiniciarActionPerformed);
 
         btnIniciar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnIniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/play.png"))); // NOI18N
@@ -228,67 +235,63 @@ public class JfrmJuego extends javax.swing.JFrame {
         panelPrincipiante.setName("Principiante"); // NOI18N
         panelPrincipiante.setLayout(new java.awt.GridLayout(4, 4));
 
-        jButton1.setText("jButton1");
+        jButton1.setText(" ");
         jButton1.addActionListener(this::jButton1ActionPerformed);
         panelPrincipiante.add(jButton1);
 
-        jButton2.setText("jButton1");
+        jButton2.setText(" ");
         jButton2.addActionListener(this::jButton2ActionPerformed);
         panelPrincipiante.add(jButton2);
 
-        jButton3.setText("jButton1");
+        jButton3.setText(" ");
         jButton3.addActionListener(this::jButton3ActionPerformed);
         panelPrincipiante.add(jButton3);
 
-        jButton4.setText("jButton1");
+        jButton4.setText(" ");
         jButton4.addActionListener(this::jButton4ActionPerformed);
         panelPrincipiante.add(jButton4);
 
-        jButton5.setText("jButton1");
+        jButton5.setText(" ");
         jButton5.addActionListener(this::jButton5ActionPerformed);
         panelPrincipiante.add(jButton5);
 
-        jButton6.setText("jButton1");
+        jButton6.setText(" ");
         jButton6.addActionListener(this::jButton6ActionPerformed);
         panelPrincipiante.add(jButton6);
 
-        jButton7.setText("jButton1");
+        jButton7.setText(" ");
         jButton7.addActionListener(this::jButton7ActionPerformed);
         panelPrincipiante.add(jButton7);
 
-        jButton8.setText("jButton1");
+        jButton8.setText(" ");
         jButton8.addActionListener(this::jButton8ActionPerformed);
         panelPrincipiante.add(jButton8);
 
-        jButton9.setText("jButton1");
         jButton9.addActionListener(this::jButton9ActionPerformed);
         panelPrincipiante.add(jButton9);
 
-        jButton10.setText("jButton1");
+        jButton10.setText(" ");
         jButton10.addActionListener(this::jButton10ActionPerformed);
         panelPrincipiante.add(jButton10);
 
-        jButton11.setText("jButton1");
+        jButton11.setText(" ");
         jButton11.addActionListener(this::jButton11ActionPerformed);
         panelPrincipiante.add(jButton11);
 
-        jButton12.setText("jButton1");
+        jButton12.setText(" ");
         jButton12.addActionListener(this::jButton12ActionPerformed);
         panelPrincipiante.add(jButton12);
 
-        jButton13.setText("jButton1");
         jButton13.addActionListener(this::jButton13ActionPerformed);
         panelPrincipiante.add(jButton13);
 
-        jButton14.setText("jButton1");
         jButton14.addActionListener(this::jButton14ActionPerformed);
         panelPrincipiante.add(jButton14);
 
-        jButton15.setText("jButton1");
         jButton15.addActionListener(this::jButton15ActionPerformed);
         panelPrincipiante.add(jButton15);
 
-        jButton16.setText("jButton1");
+        jButton16.setText(" ");
         jButton16.addActionListener(this::jButton16ActionPerformed);
         panelPrincipiante.add(jButton16);
 
@@ -297,131 +300,116 @@ public class JfrmJuego extends javax.swing.JFrame {
         panelIntermedio.setName("Intermedio"); // NOI18N
         panelIntermedio.setLayout(new java.awt.GridLayout(8, 4));
 
-        jButton17.setText("jButton1");
+        jButton17.setText(" ");
         jButton17.addActionListener(this::jButton17ActionPerformed);
         panelIntermedio.add(jButton17);
 
-        jButton18.setText("jButton1");
+        jButton18.setText(" ");
         jButton18.addActionListener(this::jButton18ActionPerformed);
         panelIntermedio.add(jButton18);
 
-        jButton19.setText("jButton1");
+        jButton19.setText(" ");
         jButton19.addActionListener(this::jButton19ActionPerformed);
         panelIntermedio.add(jButton19);
 
-        jButton20.setText("jButton1");
+        jButton20.setText(" ");
         jButton20.addActionListener(this::jButton20ActionPerformed);
         panelIntermedio.add(jButton20);
 
-        jButton21.setText("jButton1");
+        jButton21.setText(" ");
         jButton21.addActionListener(this::jButton21ActionPerformed);
         panelIntermedio.add(jButton21);
 
-        jButton22.setText("jButton1");
+        jButton22.setText(" ");
         jButton22.addActionListener(this::jButton22ActionPerformed);
         panelIntermedio.add(jButton22);
 
-        jButton23.setText("jButton1");
+        jButton23.setText(" ");
         jButton23.addActionListener(this::jButton23ActionPerformed);
         panelIntermedio.add(jButton23);
 
-        jButton24.setText("jButton1");
+        jButton24.setText(" ");
         jButton24.addActionListener(this::jButton24ActionPerformed);
         panelIntermedio.add(jButton24);
 
-        jButton25.setText("jButton1");
+        jButton25.setText(" ");
         jButton25.addActionListener(this::jButton25ActionPerformed);
         panelIntermedio.add(jButton25);
 
-        jButton26.setText("jButton1");
+        jButton26.setText(" ");
         jButton26.addActionListener(this::jButton26ActionPerformed);
         panelIntermedio.add(jButton26);
 
-        jButton27.setText("jButton1");
+        jButton27.setText(" ");
         jButton27.addActionListener(this::jButton27ActionPerformed);
         panelIntermedio.add(jButton27);
 
-        jButton28.setText("jButton1");
+        jButton28.setText(" ");
         jButton28.addActionListener(this::jButton28ActionPerformed);
         panelIntermedio.add(jButton28);
 
-        jButton29.setText("jButton1");
+        jButton29.setText(" ");
         jButton29.addActionListener(this::jButton29ActionPerformed);
         panelIntermedio.add(jButton29);
 
-        jButton30.setText("jButton1");
+        jButton30.setText(" ");
         jButton30.addActionListener(this::jButton30ActionPerformed);
         panelIntermedio.add(jButton30);
 
-        jButton31.setText("jButton1");
+        jButton31.setText(" ");
         jButton31.addActionListener(this::jButton31ActionPerformed);
         panelIntermedio.add(jButton31);
 
-        jButton32.setText("jButton1");
+        jButton32.setText(" ");
         jButton32.addActionListener(this::jButton32ActionPerformed);
         panelIntermedio.add(jButton32);
 
-        jButton33.setText("jButton1");
         jButton33.addActionListener(this::jButton33ActionPerformed);
         panelIntermedio.add(jButton33);
 
-        jButton34.setText("jButton1");
         jButton34.addActionListener(this::jButton34ActionPerformed);
         panelIntermedio.add(jButton34);
 
-        jButton35.setText("jButton1");
         jButton35.addActionListener(this::jButton35ActionPerformed);
         panelIntermedio.add(jButton35);
 
-        jButton36.setText("jButton1");
         jButton36.addActionListener(this::jButton36ActionPerformed);
         panelIntermedio.add(jButton36);
 
-        jButton37.setText("jButton1");
         jButton37.addActionListener(this::jButton37ActionPerformed);
         panelIntermedio.add(jButton37);
 
-        jButton38.setText("jButton1");
         jButton38.addActionListener(this::jButton38ActionPerformed);
         panelIntermedio.add(jButton38);
 
-        jButton39.setText("jButton1");
         jButton39.addActionListener(this::jButton39ActionPerformed);
         panelIntermedio.add(jButton39);
 
-        jButton40.setText("jButton1");
         jButton40.addActionListener(this::jButton40ActionPerformed);
         panelIntermedio.add(jButton40);
 
-        jButton41.setText("jButton1");
+        jButton41.setToolTipText("");
         jButton41.addActionListener(this::jButton41ActionPerformed);
         panelIntermedio.add(jButton41);
 
-        jButton42.setText("jButton1");
         jButton42.addActionListener(this::jButton42ActionPerformed);
         panelIntermedio.add(jButton42);
 
-        jButton43.setText("jButton1");
         jButton43.addActionListener(this::jButton43ActionPerformed);
         panelIntermedio.add(jButton43);
 
-        jButton44.setText("jButton1");
         jButton44.addActionListener(this::jButton44ActionPerformed);
         panelIntermedio.add(jButton44);
 
-        jButton45.setText("jButton1");
         jButton45.addActionListener(this::jButton45ActionPerformed);
         panelIntermedio.add(jButton45);
 
-        jButton46.setText("jButton1");
         jButton46.addActionListener(this::jButton46ActionPerformed);
         panelIntermedio.add(jButton46);
 
-        jButton47.setText("jButton1");
         jButton47.addActionListener(this::jButton47ActionPerformed);
         panelIntermedio.add(jButton47);
 
-        jButton48.setText("jButton1");
         jButton48.addActionListener(this::jButton48ActionPerformed);
         panelIntermedio.add(jButton48);
 
@@ -430,259 +418,199 @@ public class JfrmJuego extends javax.swing.JFrame {
         panelAvanzada.setName("Avanzada"); // NOI18N
         panelAvanzada.setLayout(new java.awt.GridLayout(8, 8));
 
-        jButton49.setText("jButton1");
         jButton49.addActionListener(this::jButton49ActionPerformed);
         panelAvanzada.add(jButton49);
 
-        jButton50.setText("jButton1");
         jButton50.addActionListener(this::jButton50ActionPerformed);
         panelAvanzada.add(jButton50);
 
-        jButton51.setText("jButton1");
         jButton51.addActionListener(this::jButton51ActionPerformed);
         panelAvanzada.add(jButton51);
 
-        jButton52.setText("jButton1");
         jButton52.addActionListener(this::jButton52ActionPerformed);
         panelAvanzada.add(jButton52);
 
-        jButton53.setText("jButton1");
         jButton53.addActionListener(this::jButton53ActionPerformed);
         panelAvanzada.add(jButton53);
 
-        jButton54.setText("jButton1");
+        jButton54.setToolTipText("");
         jButton54.addActionListener(this::jButton54ActionPerformed);
         panelAvanzada.add(jButton54);
 
-        jButton55.setText("jButton1");
         jButton55.addActionListener(this::jButton55ActionPerformed);
         panelAvanzada.add(jButton55);
 
-        jButton56.setText("jButton1");
         jButton56.addActionListener(this::jButton56ActionPerformed);
         panelAvanzada.add(jButton56);
 
-        jButton57.setText("jButton1");
         jButton57.addActionListener(this::jButton57ActionPerformed);
         panelAvanzada.add(jButton57);
 
-        jButton58.setText("jButton1");
         jButton58.addActionListener(this::jButton58ActionPerformed);
         panelAvanzada.add(jButton58);
 
-        jButton59.setText("jButton1");
         jButton59.addActionListener(this::jButton59ActionPerformed);
         panelAvanzada.add(jButton59);
 
-        jButton60.setText("jButton1");
         jButton60.addActionListener(this::jButton60ActionPerformed);
         panelAvanzada.add(jButton60);
 
-        jButton61.setText("jButton1");
         jButton61.addActionListener(this::jButton61ActionPerformed);
         panelAvanzada.add(jButton61);
 
-        jButton62.setText("jButton1");
         jButton62.addActionListener(this::jButton62ActionPerformed);
         panelAvanzada.add(jButton62);
 
-        jButton63.setText("jButton1");
         jButton63.addActionListener(this::jButton63ActionPerformed);
         panelAvanzada.add(jButton63);
 
-        jButton64.setText("jButton1");
         jButton64.addActionListener(this::jButton64ActionPerformed);
         panelAvanzada.add(jButton64);
 
-        jButton65.setText("jButton1");
         jButton65.addActionListener(this::jButton65ActionPerformed);
         panelAvanzada.add(jButton65);
 
-        jButton66.setText("jButton1");
         jButton66.addActionListener(this::jButton66ActionPerformed);
         panelAvanzada.add(jButton66);
 
-        jButton67.setText("jButton1");
         jButton67.addActionListener(this::jButton67ActionPerformed);
         panelAvanzada.add(jButton67);
 
-        jButton68.setText("jButton1");
         jButton68.addActionListener(this::jButton68ActionPerformed);
         panelAvanzada.add(jButton68);
 
-        jButton69.setText("jButton1");
+        jButton69.setToolTipText("");
         jButton69.addActionListener(this::jButton69ActionPerformed);
         panelAvanzada.add(jButton69);
 
-        jButton70.setText("jButton1");
         jButton70.addActionListener(this::jButton70ActionPerformed);
         panelAvanzada.add(jButton70);
 
-        jButton71.setText("jButton1");
         jButton71.addActionListener(this::jButton71ActionPerformed);
         panelAvanzada.add(jButton71);
 
-        jButton72.setText("jButton1");
         jButton72.addActionListener(this::jButton72ActionPerformed);
         panelAvanzada.add(jButton72);
 
-        jButton73.setText("jButton1");
+        jButton73.setToolTipText("");
         jButton73.addActionListener(this::jButton73ActionPerformed);
         panelAvanzada.add(jButton73);
 
-        jButton74.setText("jButton1");
         jButton74.addActionListener(this::jButton74ActionPerformed);
         panelAvanzada.add(jButton74);
 
-        jButton75.setText("jButton1");
         jButton75.addActionListener(this::jButton75ActionPerformed);
         panelAvanzada.add(jButton75);
 
-        jButton76.setText("jButton1");
         jButton76.addActionListener(this::jButton76ActionPerformed);
         panelAvanzada.add(jButton76);
 
-        jButton77.setText("jButton1");
         jButton77.addActionListener(this::jButton77ActionPerformed);
         panelAvanzada.add(jButton77);
 
-        jButton78.setText("jButton1");
         jButton78.addActionListener(this::jButton78ActionPerformed);
         panelAvanzada.add(jButton78);
 
-        jButton79.setText("jButton1");
         jButton79.addActionListener(this::jButton79ActionPerformed);
         panelAvanzada.add(jButton79);
 
-        jButton80.setText("jButton1");
         jButton80.addActionListener(this::jButton80ActionPerformed);
         panelAvanzada.add(jButton80);
 
-        jButton81.setText("jButton1");
         jButton81.addActionListener(this::jButton81ActionPerformed);
         panelAvanzada.add(jButton81);
 
-        jButton82.setText("jButton1");
         jButton82.addActionListener(this::jButton82ActionPerformed);
         panelAvanzada.add(jButton82);
 
-        jButton83.setText("jButton1");
         jButton83.addActionListener(this::jButton83ActionPerformed);
         panelAvanzada.add(jButton83);
 
-        jButton84.setText("jButton1");
         jButton84.addActionListener(this::jButton84ActionPerformed);
         panelAvanzada.add(jButton84);
 
-        jButton85.setText("jButton1");
         jButton85.addActionListener(this::jButton85ActionPerformed);
         panelAvanzada.add(jButton85);
 
-        jButton86.setText("jButton1");
         jButton86.addActionListener(this::jButton86ActionPerformed);
         panelAvanzada.add(jButton86);
 
-        jButton87.setText("jButton1");
         jButton87.addActionListener(this::jButton87ActionPerformed);
         panelAvanzada.add(jButton87);
 
-        jButton88.setText("jButton1");
         jButton88.addActionListener(this::jButton88ActionPerformed);
         panelAvanzada.add(jButton88);
 
-        jButton89.setText("jButton1");
         jButton89.addActionListener(this::jButton89ActionPerformed);
         panelAvanzada.add(jButton89);
 
-        jButton90.setText("jButton1");
         jButton90.addActionListener(this::jButton90ActionPerformed);
         panelAvanzada.add(jButton90);
 
-        jButton91.setText("jButton1");
         jButton91.addActionListener(this::jButton91ActionPerformed);
         panelAvanzada.add(jButton91);
 
-        jButton92.setText("jButton1");
         jButton92.addActionListener(this::jButton92ActionPerformed);
         panelAvanzada.add(jButton92);
 
-        jButton93.setText("jButton1");
         jButton93.addActionListener(this::jButton93ActionPerformed);
         panelAvanzada.add(jButton93);
 
-        jButton94.setText("jButton1");
         jButton94.addActionListener(this::jButton94ActionPerformed);
         panelAvanzada.add(jButton94);
 
-        jButton95.setText("jButton1");
         jButton95.addActionListener(this::jButton95ActionPerformed);
         panelAvanzada.add(jButton95);
 
-        jButton96.setText("jButton1");
         jButton96.addActionListener(this::jButton96ActionPerformed);
         panelAvanzada.add(jButton96);
 
-        jButton97.setText("jButton1");
         jButton97.addActionListener(this::jButton97ActionPerformed);
         panelAvanzada.add(jButton97);
 
-        jButton98.setText("jButton1");
         jButton98.addActionListener(this::jButton98ActionPerformed);
         panelAvanzada.add(jButton98);
 
-        jButton99.setText("jButton1");
         jButton99.addActionListener(this::jButton99ActionPerformed);
         panelAvanzada.add(jButton99);
 
-        jButton100.setText("jButton1");
         jButton100.addActionListener(this::jButton100ActionPerformed);
         panelAvanzada.add(jButton100);
 
-        jButton101.setText("jButton1");
         jButton101.addActionListener(this::jButton101ActionPerformed);
         panelAvanzada.add(jButton101);
 
-        jButton102.setText("jButton1");
         jButton102.addActionListener(this::jButton102ActionPerformed);
         panelAvanzada.add(jButton102);
 
-        jButton103.setText("jButton1");
         jButton103.addActionListener(this::jButton103ActionPerformed);
         panelAvanzada.add(jButton103);
 
-        jButton104.setText("jButton1");
+        jButton104.setToolTipText("");
         jButton104.addActionListener(this::jButton104ActionPerformed);
         panelAvanzada.add(jButton104);
 
-        jButton105.setText("jButton1");
         jButton105.addActionListener(this::jButton105ActionPerformed);
         panelAvanzada.add(jButton105);
 
-        jButton106.setText("jButton1");
         jButton106.addActionListener(this::jButton106ActionPerformed);
         panelAvanzada.add(jButton106);
 
-        jButton107.setText("jButton1");
         jButton107.addActionListener(this::jButton107ActionPerformed);
         panelAvanzada.add(jButton107);
 
-        jButton108.setText("jButton1");
         jButton108.addActionListener(this::jButton108ActionPerformed);
         panelAvanzada.add(jButton108);
 
-        jButton109.setText("jButton1");
         jButton109.addActionListener(this::jButton109ActionPerformed);
         panelAvanzada.add(jButton109);
 
-        jButton110.setText("jButton1");
         jButton110.addActionListener(this::jButton110ActionPerformed);
         panelAvanzada.add(jButton110);
 
-        jButton111.setText("jButton1");
         jButton111.addActionListener(this::jButton111ActionPerformed);
         panelAvanzada.add(jButton111);
 
-        jButton112.setText("jButton1");
         jButton112.addActionListener(this::jButton112ActionPerformed);
         panelAvanzada.add(jButton112);
 
@@ -719,452 +647,451 @@ public class JfrmJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         procesarClicBoton(evt);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jButton32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton32ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton32ActionPerformed
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton39ActionPerformed
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jButton42ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton42ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton43ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton43ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton43ActionPerformed
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton44ActionPerformed
 
     private void jButton45ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton45ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton45ActionPerformed
 
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton47ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton47ActionPerformed
 
     private void jButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton48ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton48ActionPerformed
 
     private void jButton49ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton49ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton49ActionPerformed
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton50ActionPerformed
 
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton51ActionPerformed
 
     private void jButton52ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton52ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton52ActionPerformed
 
     private void jButton53ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton53ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton53ActionPerformed
 
     private void jButton54ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton54ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton54ActionPerformed
 
     private void jButton55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton55ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton55ActionPerformed
 
     private void jButton56ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton56ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton56ActionPerformed
 
     private void jButton57ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton57ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton57ActionPerformed
 
     private void jButton58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton58ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton58ActionPerformed
 
     private void jButton59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton59ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton59ActionPerformed
 
     private void jButton60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton60ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton60ActionPerformed
 
     private void jButton61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton61ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton61ActionPerformed
 
     private void jButton62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton62ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton62ActionPerformed
 
     private void jButton63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton63ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton63ActionPerformed
 
     private void jButton64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton64ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton64ActionPerformed
 
     private void jButton65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton65ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton65ActionPerformed
 
     private void jButton66ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton66ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton66ActionPerformed
 
     private void jButton67ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton67ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton67ActionPerformed
 
     private void jButton68ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton68ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton68ActionPerformed
 
     private void jButton69ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton69ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton69ActionPerformed
 
     private void jButton70ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton70ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton70ActionPerformed
 
     private void jButton71ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton71ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton71ActionPerformed
 
     private void jButton72ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton72ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton72ActionPerformed
 
     private void jButton73ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton73ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton73ActionPerformed
 
     private void jButton74ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton74ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton74ActionPerformed
 
     private void jButton75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton75ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton75ActionPerformed
 
     private void jButton76ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton76ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton76ActionPerformed
 
     private void jButton77ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton77ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton77ActionPerformed
 
     private void jButton78ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton78ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton78ActionPerformed
 
     private void jButton79ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton79ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton79ActionPerformed
 
     private void jButton80ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton80ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton80ActionPerformed
 
     private void jButton81ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton81ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton81ActionPerformed
 
     private void jButton82ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton82ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton82ActionPerformed
 
     private void jButton83ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton83ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton83ActionPerformed
 
     private void jButton84ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton84ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton84ActionPerformed
 
     private void jButton85ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton85ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton85ActionPerformed
 
     private void jButton86ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton86ActionPerformed
-        // TODO add your handling code here:
+       procesarClicBoton(evt);
     }//GEN-LAST:event_jButton86ActionPerformed
 
     private void jButton87ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton87ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton87ActionPerformed
 
     private void jButton88ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton88ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton88ActionPerformed
 
     private void jButton89ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton89ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton89ActionPerformed
 
     private void jButton90ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton90ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton90ActionPerformed
 
     private void jButton91ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton91ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton91ActionPerformed
 
     private void jButton92ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton92ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton92ActionPerformed
 
     private void jButton93ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton93ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton93ActionPerformed
 
     private void jButton94ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton94ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton94ActionPerformed
 
     private void jButton95ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton95ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton95ActionPerformed
 
     private void jButton96ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton96ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton96ActionPerformed
 
     private void jButton97ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton97ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton97ActionPerformed
 
     private void jButton98ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton98ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton98ActionPerformed
 
     private void jButton99ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton99ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton99ActionPerformed
 
     private void jButton100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton100ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton100ActionPerformed
 
     private void jButton101ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton101ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton101ActionPerformed
 
     private void jButton102ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton102ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton102ActionPerformed
 
     private void jButton103ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton103ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton103ActionPerformed
 
     private void jButton104ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton104ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton104ActionPerformed
 
     private void jButton105ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton105ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton105ActionPerformed
 
     private void jButton106ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton106ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton106ActionPerformed
 
     private void jButton107ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton107ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton107ActionPerformed
 
     private void jButton108ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton108ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton108ActionPerformed
 
     private void jButton109ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton109ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton109ActionPerformed
 
     private void jButton110ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton110ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton110ActionPerformed
 
     private void jButton111ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton111ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton111ActionPerformed
 
     private void jButton112ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton112ActionPerformed
-        // TODO add your handling code here:
+        procesarClicBoton(evt);
     }//GEN-LAST:event_jButton112ActionPerformed
 
     private void comboNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboNivelActionPerformed
@@ -1172,28 +1099,72 @@ public class JfrmJuego extends javax.swing.JFrame {
         CardLayout cl = (CardLayout) panelTablero.getLayout();
         if (nivelSeleccionado.equals("Principiante")) {
             cl.show(panelTablero, "panelPrincipiante");
+            dificultadSeleccionada = Dificultad.PRINCIPIANTE;
+            panelActual = panelPrincipiante;
+            filasActuales = 4;
+            columnasActuales = 4;
         } else if (nivelSeleccionado.equals("Intermedio")) {
             cl.show(panelTablero, "panelIntermedio");
+            dificultadSeleccionada = Dificultad.INTERMEDIO;
+            panelActual = panelIntermedio;
+            filasActuales = 8;
+            columnasActuales = 4;
         } else if (nivelSeleccionado.equals("Avanzada")) {
             cl.show(panelTablero, "panelAvanzada");
+            dificultadSeleccionada = Dificultad.AVANZADA;
+            panelActual = panelAvanzada;
+            filasActuales = 8;
+            columnasActuales = 8;
         }
     }//GEN-LAST:event_comboNivelActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        tablero = new Tablero(dificultadSeleccionada);
+        tablero.setListaUsada(new String[]{});
+        controladorJuego = new ControladorJuego(cronometro, jugador, tablero, null, null);
+        controladorJuego.iniciarJuego();
+        
+        botonesCartas = obtenerBotonesPanel(panelActual,filasActuales,columnasActuales);
+       
+        if(timerInterfaz != null){
+            timerInterfaz.stop();
+        }
+        timerInterfaz = new javax.swing.Timer(1000, e ->{
+        lblTiempo.setText(String.format("Tiempo: %02d:%02d", cronometro.getMinutos(),cronometro.getSegundos()));
+        });
+        timerInterfaz.start();
+        
+        actualizarInterfaz();
+        comboNivel.setEnabled(false);
+        btnIniciar.setEnabled(false);
         
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReiniciarActionPerformed
+        if(timerInterfaz != null){
+            timerInterfaz.stop();
+        }
+        cronometro.reiniciar();
+        lblTiempo.setText("Tiempo: 00:00");
+        comboNivel.setEnabled(true);
+        btnIniciar.setEnabled(true);
+        java.awt.CardLayout cl = (java.awt.CardLayout) panelTablero.getLayout();
+    }//GEN-LAST:event_btnReiniciarActionPerformed
     private void procesarClicBoton(java.awt.event.ActionEvent evt){
+        if(botonesCartas == null){
+            return;
+        }
         JButton botonSeleccionado = (JButton) evt.getSource();
-        for(int i = 0; i < botonesCarta.length; i++){
-            for(int j = 0; j < botonesCarta[i].length; i++){
-                if(botonesCarta[i][j] == botonSeleccionado){
+        for(int i = 0; i < botonesCartas.length; i++){
+            for(int j = 0; j < botonesCartas[i].length; j++){
+                if(botonesCartas[i][j] == botonSeleccionado){
                     manejarClicCarta(i, j);
                     return;
                 }
             }
         }
     }
-    private JButton[][] obtenerBotonesPanel(java.awt.event.ActionEvent evt){
+    private JButton[][] obtenerBotonesPanel(javax.swing.JPanel panel,int filas, int columnas){
         JButton[][] botones = new JButton[filas][columnas];
         java.awt.Component[] componentes = panel.getComponents();
         int indi = 0;
@@ -1201,7 +1172,6 @@ public class JfrmJuego extends javax.swing.JFrame {
             for (int j = 0; j < columnas; j++) {
                 JButton boton = (JButton) componentes[indi];
                 botones[i][j] = boton;
-                boton.setText("?");
                 boton.setIcon(null);
                 indi++;
             }
@@ -1217,7 +1187,7 @@ public class JfrmJuego extends javax.swing.JFrame {
     }
     
     private void actualizarInterfaz(){
-        lblPuntaje.setText("Puntaje: " + jugador.getPuntaje());
+        lblPuntajes.setText("Puntaje: " + jugador.getPuntaje());
         lblIntentos.setText("Intentos: " + jugador.getIntentos());
         lblParejas.setText("Parejas Encontadas: " + jugador.getParejas());
         
@@ -1226,15 +1196,29 @@ public class JfrmJuego extends javax.swing.JFrame {
             for (int j = 0; j < cartas[i].length; j++) {
                 Carta carta = cartas[i][j];
                 if(carta.isEstado()){
-                    botonesCartas[i][j].setIcon(
-                    getClass().getResource("/persona1/imagenes/" + carta.getImagen() + ".png")));
-                    botonesCartas[i][j].setText("?");
+                    String numeroImagen = carta.getImagen().replace("carta_","");
+                    botonesCartas[i][j].setIcon(new javax.swing.ImageIcon(
+                    getClass().getResource("/Imagenes/" + numeroImagen + ".png")));
                 }else{
-                    botonesCarta[i][j].setIcon(null);
-                    botonesCarta[i][j].setText("?");
+                    botonesCartas[i][j].setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/iconos/signo-de-pregunta.png")));;
                 }
             }    
         }
+    }
+    
+    private void mostrarResultado(){
+        timerInterfaz.stop();
+        cronometro.detener();
+        
+        JfrmResultado resultado = new JfrmResultado();
+        
+        resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
+        resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
+        resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
+        //resultado.lblNivelFinal.setText(String.valueOf(jugador.getPuntaje()));
+        resultado.setVisible(true);
+        this.dispose();
     }
     /**
      * @param args the command line arguments

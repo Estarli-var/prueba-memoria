@@ -13,7 +13,7 @@ public class JfrmResultado extends javax.swing.JFrame {
      */
     public JfrmResultado() {
         initComponents();
-        
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -40,7 +40,6 @@ public class JfrmResultado extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 244));
         setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
@@ -57,6 +56,7 @@ public class JfrmResultado extends javax.swing.JFrame {
         panelResultado.add(lblPuntaje);
 
         lblPuntajeFinal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPuntajeFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         panelResultado.add(lblPuntajeFinal);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -143,13 +143,13 @@ public class JfrmResultado extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnJugarDeNuevo;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel lblIntentosFinal;
+    public javax.swing.JLabel lblIntentosFinal;
     private javax.swing.JLabel lblNivel;
-    private javax.swing.JLabel lblNivelFinal;
+    public javax.swing.JLabel lblNivelFinal;
     private javax.swing.JLabel lblPuntaje;
-    private javax.swing.JLabel lblPuntajeFinal;
+    public javax.swing.JLabel lblPuntajeFinal;
     private javax.swing.JLabel lblTiempo;
-    private javax.swing.JLabel lblTiempoFinal;
+    public javax.swing.JLabel lblTiempoFinal;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelResultado;

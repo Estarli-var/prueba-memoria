@@ -4,10 +4,6 @@
  */
 package juego_de_memoria.prueba;
 
-/**
- *
- * @author Nazareth Quirós
- */
 public class JfrmInicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmInicio.class.getName());
