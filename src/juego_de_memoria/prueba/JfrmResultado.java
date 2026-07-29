@@ -13,7 +13,7 @@ public class JfrmResultado extends javax.swing.JFrame {
      */
     public JfrmResultado() {
         initComponents();
-        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -40,6 +40,8 @@ public class JfrmResultado extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(300, 244));
+        setResizable(false);
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -50,6 +52,7 @@ public class JfrmResultado extends javax.swing.JFrame {
         panelResultado.setLayout(new java.awt.GridLayout(4, 4));
 
         lblPuntaje.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPuntaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/star.png"))); // NOI18N
         lblPuntaje.setText("Puntaje Final");
         panelResultado.add(lblPuntaje);
 
@@ -57,6 +60,7 @@ public class JfrmResultado extends javax.swing.JFrame {
         panelResultado.add(lblPuntajeFinal);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/target.png"))); // NOI18N
         jLabel3.setText("Intentos");
         panelResultado.add(jLabel3);
 
@@ -64,6 +68,7 @@ public class JfrmResultado extends javax.swing.JFrame {
         panelResultado.add(lblIntentosFinal);
 
         lblTiempo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTiempo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/hourglass.png"))); // NOI18N
         lblTiempo.setText("Tiempo");
         panelResultado.add(lblTiempo);
 
@@ -71,6 +76,7 @@ public class JfrmResultado extends javax.swing.JFrame {
         panelResultado.add(lblTiempoFinal);
 
         lblNivel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNivel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nivel.png"))); // NOI18N
         lblNivel.setText("Nivel");
         panelResultado.add(lblNivel);
 
