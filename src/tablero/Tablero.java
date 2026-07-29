@@ -5,7 +5,7 @@
 package tablero;
 
 import cartas.Carta;
-import persona1.Dificultad;
+import NivelDificultad.Dificultad;
 
 /**
  *
