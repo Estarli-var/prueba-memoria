@@ -70,29 +70,22 @@ public class Tablero {
 
     public Tablero(Dificultad dificultad) {
         this.dificultad = dificultad;
-        int filas = 0;
-        int columnas = 0;
+        this.cartas = new Carta[dificultad.getFilas()][dificultad.getColumnas()];
         this.inicializarTablero();
         this.generarCartas();
     }
 
     public void generarCartas() {
         int numeroCarta = 1;
-        System.out.println(listaUsada.length);
         for (int i = 0; i < listaUsada.length; i++) {
-
             for (int j = 0; j < 2; j++) {
-                System.out.println(i);
-                System.out.println(listaUsada[i]);
                 String[] valores = listaUsada[i].split("-");
                 cartas[Integer.valueOf(valores[0])][Integer.valueOf(valores[1])] = new Carta(("carta_" + numeroCarta), ("carta" + numeroCarta));
                 if (j == 0) {
                     i++;
-
                 }
             }
             numeroCarta++;
-
         }
     }
 
@@ -105,14 +98,12 @@ public class Tablero {
             carta1.setEstado(true);
             carta2.setEstado(true);
             return false;
-
         }
-
     }
 
     public boolean validarTodaslasCartas() {
-        for (int i = 0; i < dificultad.getDifiMedidas(); i++) {
-            for (int j = 0; j < dificultad.getDifiMedidas(); j++) {
+        for (int i = 0; i < cartas.length; i++) {
+            for (int j = 0; j < cartas[i].length; j++) {
                 if (!cartas[i][j].isEstado()) {
                     return false;
                 }
@@ -128,5 +119,4 @@ public class Tablero {
     public void ocultarCarta(Carta carta) {
         carta.setEstado(false);
     }
-
 }
