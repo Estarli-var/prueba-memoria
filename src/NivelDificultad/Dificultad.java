@@ -9,21 +9,23 @@ package NivelDificultad;
  * @author wesrm
  */
 public enum Dificultad {
-    PRINCIPIANTE(4),
-    INTERMEDIO(8),
-    AVANZADA(16);
-        
-    private final int difiMedidas;
+    PRINCIPIANTE(4, 4),  
+    INTERMEDIO(4, 8),    
+    AVANZADA(8, 8);      
 
-    public int getDifiMedidas() {
-        return difiMedidas;
+    private final int filas;
+    private final int columnas;
+
+    Dificultad(int filas, int columnas) {
+        this.filas = filas;
+        this.columnas = columnas;
     }
 
-    Dificultad(int difiMedidas) {
-        this.difiMedidas = difiMedidas;
+    public int getFilas() {
+        return filas;
     }
-    
-    
-    
 
+    public int getColumnas() {
+        return columnas;
+    }
 }
