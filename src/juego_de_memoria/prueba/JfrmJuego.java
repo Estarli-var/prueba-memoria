@@ -5,13 +5,14 @@
 package juego_de_memoria.prueba;
 
 import Jugadores.Jugador;
+import NivelDificultad.Dificultad;
+import cartas.Carta;
 import conometros.Conometro;
 import controladores.ControladorJuego;
 import java.awt.CardLayout;
 import javax.swing.JButton;
-import persona1.Carta;
-import persona1.Dificultad;
-import persona1.Tablero;
+import tablero.Tablero;
+
 
 /**
  *
@@ -298,7 +299,7 @@ public class JfrmJuego extends javax.swing.JFrame {
         panelTablero.add(panelPrincipiante, "panelPrincipiante");
 
         panelIntermedio.setName("Intermedio"); // NOI18N
-        panelIntermedio.setLayout(new java.awt.GridLayout(8, 4));
+        panelIntermedio.setLayout(new java.awt.GridLayout(4, 8));
 
         jButton17.setText(" ");
         jButton17.addActionListener(this::jButton17ActionPerformed);
@@ -1107,8 +1108,8 @@ public class JfrmJuego extends javax.swing.JFrame {
             cl.show(panelTablero, "panelIntermedio");
             dificultadSeleccionada = Dificultad.INTERMEDIO;
             panelActual = panelIntermedio;
-            filasActuales = 8;
-            columnasActuales = 4;
+            filasActuales = 4;
+            columnasActuales = 8;
         } else if (nivelSeleccionado.equals("Avanzada")) {
             cl.show(panelTablero, "panelAvanzada");
             dificultadSeleccionada = Dificultad.AVANZADA;
@@ -1119,6 +1120,9 @@ public class JfrmJuego extends javax.swing.JFrame {
     }//GEN-LAST:event_comboNivelActionPerformed
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        comboNivel.setEnabled(false);
+        btnIniciar.setEnabled(false);
+        
         tablero = new Tablero(dificultadSeleccionada);
         tablero.setListaUsada(new String[]{});
         controladorJuego = new ControladorJuego(cronometro, jugador, tablero, null, null);
@@ -1135,8 +1139,7 @@ public class JfrmJuego extends javax.swing.JFrame {
         timerInterfaz.start();
         
         actualizarInterfaz();
-        comboNivel.setEnabled(false);
-        btnIniciar.setEnabled(false);
+        
         
     }//GEN-LAST:event_btnIniciarActionPerformed
 
@@ -1145,11 +1148,14 @@ public class JfrmJuego extends javax.swing.JFrame {
             timerInterfaz.stop();
         }
         cronometro.reiniciar();
+        jugador.reiniciar();
         lblTiempo.setText("Tiempo: 00:00");
+        lblIntentos.setText("Intentos: 0");
         comboNivel.setEnabled(true);
         btnIniciar.setEnabled(true);
         java.awt.CardLayout cl = (java.awt.CardLayout) panelTablero.getLayout();
     }//GEN-LAST:event_btnReiniciarActionPerformed
+    
     private void procesarClicBoton(java.awt.event.ActionEvent evt){
         if(botonesCartas == null){
             return;
@@ -1182,7 +1188,7 @@ public class JfrmJuego extends javax.swing.JFrame {
         controladorJuego.seleccionarCarta(fila, columna);
         actualizarInterfaz();
         if(tablero.validarTodaslasCartas()){
-            mostrarResultado();
+           // mostrarResultado();
         }
     }
     
@@ -1207,19 +1213,19 @@ public class JfrmJuego extends javax.swing.JFrame {
         }
     }
     
-    private void mostrarResultado(){
-        timerInterfaz.stop();
-        cronometro.detener();
+    //private void mostrarResultado(){
+       // timerInterfaz.stop();
+       // cronometro.detener();
         
-        JfrmResultado resultado = new JfrmResultado();
+       // JfrmResultado resultado = new JfrmResultado();
         
-        resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
-        resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
-        resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
+       // resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
+       // resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
+       // resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
         //resultado.lblNivelFinal.setText(String.valueOf(jugador.getPuntaje()));
-        resultado.setVisible(true);
-        this.dispose();
-    }
+       // resultado.setVisible(true);
+       // this.dispose();
+   // }
     /**
      * @param args the command line arguments
      */
