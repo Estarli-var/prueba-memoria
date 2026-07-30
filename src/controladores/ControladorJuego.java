@@ -5,8 +5,6 @@
 package controladores;
 import Jugadores.Jugador;
 import conometros.Conometro;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import tablero.Tablero;
 import cartas.Carta;
@@ -19,7 +17,7 @@ public class ControladorJuego {
     
     private Conometro conometro;
     private Jugador jugador;
-    private Tablero tablero;
+    private Tablero tablero;   
     private Carta primeraCarta;
     private Carta segundaCarta;
     private boolean bloqueado;
@@ -75,14 +73,10 @@ public class ControladorJuego {
                 
                 jugador.sumarIntento();
 
-                Timer tiempoEspera = new Timer(2000, new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        tablero.ocultarCarta(primeraCarta);
-                        tablero.ocultarCarta(segundaCarta);
-                        limpiarTurno();
-                        
-                    }
+                Timer tiempoEspera = new Timer(1000, e -> {
+                    tablero.ocultarCarta(primeraCarta);
+                    tablero.ocultarCarta(segundaCarta);
+                    limpiarTurno();
                 });
                 tiempoEspera.setRepeats(false);
                 tiempoEspera.start();
