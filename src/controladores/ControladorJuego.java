@@ -1,10 +1,11 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package controladores;
 import Jugadores.Jugador;
-import conometros.Conometro;
+import cronometros.Cronometro;
 import javax.swing.Timer;
 import tablero.Tablero;
 import cartas.Carta;
@@ -15,15 +16,15 @@ import cartas.Carta;
  */
 public class ControladorJuego {
     
-    private Conometro conometro;
+    private Cronometro cronometro;
     private Jugador jugador;
     private Tablero tablero;   
     private Carta primeraCarta;
     private Carta segundaCarta;
     private boolean bloqueado;
 
-    public ControladorJuego(Conometro conometro, Jugador jugador, Tablero tablero, Carta primeraCarta, Carta segundaCarta) {
-        this.conometro = conometro;
+    public ControladorJuego(Cronometro conometro, Jugador jugador, Tablero tablero, Carta primeraCarta, Carta segundaCarta) {
+        this.cronometro = conometro;
         this.jugador = jugador;
         this.tablero = tablero;
         this.primeraCarta = primeraCarta;
@@ -32,7 +33,7 @@ public class ControladorJuego {
    
     public void iniciarJuego(){
         jugador.reiniciar();
-        conometro.iniciar();
+        cronometro.iniciar();
         tablero.inicializarTablero();
         tablero.generarCartas();
         primeraCarta= null;
@@ -91,6 +92,6 @@ public class ControladorJuego {
     }
 
     public void finalizarJuego() {
-        conometro.detener();
+        cronometro.detener();
     }
 }
