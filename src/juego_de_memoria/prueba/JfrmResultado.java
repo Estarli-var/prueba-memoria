@@ -27,17 +27,19 @@ public class JfrmResultado extends javax.swing.JFrame {
 
         lblTitulo = new javax.swing.JLabel();
         panelResultado = new javax.swing.JPanel();
+        lblNivel = new javax.swing.JLabel();
+        lblNiveles = new javax.swing.JLabel();
         lblPuntaje = new javax.swing.JLabel();
         lblPuntajeFinal = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblIntento = new javax.swing.JLabel();
         lblIntentosFinal = new javax.swing.JLabel();
         lblTiempo = new javax.swing.JLabel();
         lblTiempoFinal = new javax.swing.JLabel();
-        lblNivel = new javax.swing.JLabel();
-        lblNivelFinal = new javax.swing.JLabel();
+        lblPareja = new javax.swing.JLabel();
+        lblParejaEncontradas = new javax.swing.JLabel();
         panelBotones = new javax.swing.JPanel();
         btnJugarDeNuevo = new javax.swing.JButton();
-        btnCerrar = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -48,7 +50,15 @@ public class JfrmResultado extends javax.swing.JFrame {
         getContentPane().add(lblTitulo, java.awt.BorderLayout.PAGE_START);
 
         panelResultado.setName("panelResultado"); // NOI18N
-        panelResultado.setLayout(new java.awt.GridLayout(4, 4));
+        panelResultado.setLayout(new java.awt.GridLayout(5, 4));
+
+        lblNivel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNivel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nivel.png"))); // NOI18N
+        lblNivel.setText("Nivel");
+        panelResultado.add(lblNivel);
+
+        lblNiveles.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelResultado.add(lblNiveles);
 
         lblPuntaje.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblPuntaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/star.png"))); // NOI18N
@@ -59,10 +69,10 @@ public class JfrmResultado extends javax.swing.JFrame {
         lblPuntajeFinal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         panelResultado.add(lblPuntajeFinal);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/target.png"))); // NOI18N
-        jLabel3.setText("Intentos");
-        panelResultado.add(jLabel3);
+        lblIntento.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblIntento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/target.png"))); // NOI18N
+        lblIntento.setText("Intentos");
+        panelResultado.add(lblIntento);
 
         lblIntentosFinal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelResultado.add(lblIntentosFinal);
@@ -75,13 +85,13 @@ public class JfrmResultado extends javax.swing.JFrame {
         lblTiempoFinal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         panelResultado.add(lblTiempoFinal);
 
-        lblNivel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblNivel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/nivel.png"))); // NOI18N
-        lblNivel.setText("Nivel");
-        panelResultado.add(lblNivel);
+        lblPareja.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPareja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/playing-cards.png"))); // NOI18N
+        lblPareja.setText("Parejas Encontradas");
+        panelResultado.add(lblPareja);
 
-        lblNivelFinal.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        panelResultado.add(lblNivelFinal);
+        lblParejaEncontradas.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        panelResultado.add(lblParejaEncontradas);
 
         getContentPane().add(panelResultado, java.awt.BorderLayout.CENTER);
 
@@ -92,10 +102,10 @@ public class JfrmResultado extends javax.swing.JFrame {
         btnJugarDeNuevo.addActionListener(this::btnJugarDeNuevoActionPerformed);
         panelBotones.add(btnJugarDeNuevo);
 
-        btnCerrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCerrar.setText("Cerrar");
-        btnCerrar.addActionListener(this::btnCerrarActionPerformed);
-        panelBotones.add(btnCerrar);
+        btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(this::btnSalirActionPerformed);
+        panelBotones.add(btnSalir);
 
         getContentPane().add(panelBotones, java.awt.BorderLayout.PAGE_END);
 
@@ -109,10 +119,10 @@ public class JfrmResultado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnJugarDeNuevoActionPerformed
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_btnCerrarActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,12 +150,14 @@ public class JfrmResultado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnJugarDeNuevo;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel lblIntento;
     public javax.swing.JLabel lblIntentosFinal;
     private javax.swing.JLabel lblNivel;
-    public javax.swing.JLabel lblNivelFinal;
+    public javax.swing.JLabel lblNiveles;
+    private javax.swing.JLabel lblPareja;
+    public javax.swing.JLabel lblParejaEncontradas;
     private javax.swing.JLabel lblPuntaje;
     public javax.swing.JLabel lblPuntajeFinal;
     private javax.swing.JLabel lblTiempo;

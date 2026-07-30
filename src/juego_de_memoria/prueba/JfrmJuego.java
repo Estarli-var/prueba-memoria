@@ -7,7 +7,7 @@ package juego_de_memoria.prueba;
 import Jugadores.Jugador;
 import NivelDificultad.Dificultad;
 import cartas.Carta;
-import conometros.Conometro;
+import cronometros.Cronometro;
 import controladores.ControladorJuego;
 import java.awt.CardLayout;
 import javax.swing.JButton;
@@ -21,7 +21,7 @@ import tablero.Tablero;
 public class JfrmJuego extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JfrmJuego.class.getName());
-    private Conometro cronometro = new Conometro();
+    private Cronometro cronometro = new Cronometro();
     private final Jugador jugador = new Jugador();
     private Tablero tablero;
     private ControladorJuego controladorJuego;
@@ -1153,7 +1153,6 @@ public class JfrmJuego extends javax.swing.JFrame {
         lblIntentos.setText("Intentos: 0");
         comboNivel.setEnabled(true);
         btnIniciar.setEnabled(true);
-        java.awt.CardLayout cl = (java.awt.CardLayout) panelTablero.getLayout();
     }//GEN-LAST:event_btnReiniciarActionPerformed
     
     private void procesarClicBoton(java.awt.event.ActionEvent evt){
@@ -1173,13 +1172,13 @@ public class JfrmJuego extends javax.swing.JFrame {
     private JButton[][] obtenerBotonesPanel(javax.swing.JPanel panel,int filas, int columnas){
         JButton[][] botones = new JButton[filas][columnas];
         java.awt.Component[] componentes = panel.getComponents();
-        int indi = 0;
+        int indice = 0;
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
-                JButton boton = (JButton) componentes[indi];
+                JButton boton = (JButton) componentes[indice];
                 botones[i][j] = boton;
                 boton.setIcon(null);
-                indi++;
+                indice++;
             }
         }
         return botones;
@@ -1188,7 +1187,7 @@ public class JfrmJuego extends javax.swing.JFrame {
         controladorJuego.seleccionarCarta(fila, columna);
         actualizarInterfaz();
         if(tablero.validarTodaslasCartas()){
-           // mostrarResultado();
+           mostrarResultado();
         }
     }
     
@@ -1219,11 +1218,12 @@ public class JfrmJuego extends javax.swing.JFrame {
         
         JfrmResultado resultado = new JfrmResultado();
         
+        resultado.lblNiveles.setText(String.valueOf(comboNivel.getSelectedItem().toString()));
         resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
         resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
         resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
-       resultado.lblNivelFinal.setText(String.valueOf(jugador.getPuntaje()));
-       resultado.setVisible(true);
+        resultado.lblParejaEncontradas.setText(String.valueOf(jugador.getParejas()));
+        resultado.setVisible(true);
        this.dispose();
     }
     /**
