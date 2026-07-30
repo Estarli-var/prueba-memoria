@@ -8,8 +8,8 @@ import conometros.Conometro;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
-import persona1.Tablero;
-import persona1.Carta;
+import tablero.Tablero;
+import cartas.Carta;
 
 /**
  *
@@ -35,7 +35,7 @@ public class ControladorJuego {
     public void iniciarJuego(){
         jugador.reiniciar();
         conometro.iniciar();
-        tablero.incializarTablero();
+        tablero.inicializarTablero();
         tablero.generarCartas();
         primeraCarta= null;
         segundaCarta= null;
