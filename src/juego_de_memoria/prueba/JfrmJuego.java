@@ -1213,19 +1213,19 @@ public class JfrmJuego extends javax.swing.JFrame {
         }
     }
     
-    //private void mostrarResultado(){
-       // timerInterfaz.stop();
-       // cronometro.detener();
+    private void mostrarResultado(){
+        timerInterfaz.stop();
+        cronometro.detener();
         
-       // JfrmResultado resultado = new JfrmResultado();
+        JfrmResultado resultado = new JfrmResultado();
         
-       // resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
-       // resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
-       // resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
-        //resultado.lblNivelFinal.setText(String.valueOf(jugador.getPuntaje()));
-       // resultado.setVisible(true);
-       // this.dispose();
-   // }
+        resultado.lblPuntajeFinal.setText(String.valueOf(jugador.getPuntaje()));
+        resultado.lblIntentosFinal.setText(String.valueOf(jugador.getIntentos()));
+        resultado.lblTiempoFinal.setText(String.format("%02d:%02d", cronometro.getMinutos(), cronometro.getSegundos()));
+       resultado.lblNivelFinal.setText(String.valueOf(jugador.getPuntaje()));
+       resultado.setVisible(true);
+       this.dispose();
+    }
     /**
      * @param args the command line arguments
      */
